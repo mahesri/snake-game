@@ -1,13 +1,11 @@
 package mahesri;
 
 import java.util.Random;
+import javax.sound.sampled.*;
+import java.io.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent; 
-
+import java.awt.event.*;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -56,14 +54,42 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void loadImage(){
-      ImageIcon iia = new ImageIcon("src/resources/apple.png");
+      ImageIcon iia = new ImageIcon("src/resources/Image/apple.png");
       apple = iia.getImage();
 
-      ImageIcon ihx = new ImageIcon("src/resources/headX.png");
+      ImageIcon ihx = new ImageIcon("src/resources/Image/headX.png");
       headX = ihx.getImage();
 
-      ImageIcon ihy = new ImageIcon("src/resources/headY.png");
+      ImageIcon ihy = new ImageIcon("src/resources/Image/headY.png");
       headY = ihy.getImage();
+    }
+
+    public static void playAudio(AudioInputStream ais)throws Exception {
+
+        
+      Clip clip = AudioSystem.getClip();
+      clip.open(ais);
+      clip.start();
+ }
+
+ public static void loadSound( int keySound){
+  if(keySound == 1)  
+     try{
+         AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src/resources/Sound/mixkit-arcade-retro-changing-tab-206.wav"));
+         playAudio(ais);
+     }catch (Exception e){
+         e.printStackTrace();
+     }
+
+     if(keySound == 2){
+         try{
+             AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src/resources/Sound/mixkit-retro-game-notification-212.wav"));
+             playAudio(ais);
+         }catch (Exception e){
+             e.printStackTrace();
+         }
+         
+     }
     }
 
    @Override
@@ -105,6 +131,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
 
+
     public void locateApple(){
       appleX = random.nextInt((int)(borderWidth/unitsSize))*unitsSize;
       appleY = random.nextInt((int)(borderHeight/unitsSize))*unitsSize;
@@ -137,7 +164,10 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void checkApple(){
-      if((x[0] == appleX)&& (y[0]== appleY)){
+      if((x[0] == appleX) && (y[0]== appleY)){
+       
+        loadSound(1);
+
         bodyParts++;
         appleEaten++;
         locateApple();
@@ -170,10 +200,12 @@ public class Board extends JPanel implements ActionListener {
 
       if(!running){
         timer.stop();
+        loadSound(2);
       }
     }
 
     public void gameOver(Graphics g){
+
 
       g.setColor(new Color(115, 255, 65));
         g.setFont(new Font("Waltograph UI",Font.BOLD, 50));
@@ -197,7 +229,7 @@ public class Board extends JPanel implements ActionListener {
       repaint();
     }
   
-  public class  MyKeyAdapter extends KeyAdapter {
+  public class MyKeyAdapter extends KeyAdapter {
   
     @Override
     public void keyPressed(KeyEvent e){
