@@ -10,6 +10,7 @@ Snake(){
 }
 
 void initUI(){
+    
     this.add(new Board());
     setResizable(false);
     pack();
