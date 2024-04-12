@@ -13,7 +13,7 @@ public class Board extends JPanel implements ActionListener {
     static final int borderHeight = 600;
     static final int unitsSize = 20;
     static final int gameUnits = (borderWidth*borderHeight)/unitsSize;
-    static final int delay = 100;
+    static final int delay = 180;
 
     final int x[] = new int[gameUnits];
     final int y[] = new int[gameUnits];
