@@ -10,7 +10,7 @@ Snake(){
 }
 
 void initUI(){
-    
+
     this.add(new Board());
     setResizable(false);
     pack();
@@ -21,7 +21,7 @@ void initUI(){
 }
 
 public static void main(String[]args){
-    EventQueue.invokeLater(() ->{
+    EventQueue.invokeLater(() -> {
         new Snake();
     });
 }}

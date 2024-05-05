@@ -37,6 +37,7 @@ public class Board extends JPanel implements ActionListener {
 
 
     public Board(){
+
       random = new Random();
       this.setPreferredSize(new Dimension(borderWidth, borderHeight));
       this.setBackground(new Color(333333));
@@ -44,6 +45,7 @@ public class Board extends JPanel implements ActionListener {
       this.setFocusable(true);
       startGame();
       loadImage();
+      
     }
     
     public void startGame(){
@@ -73,6 +75,7 @@ public class Board extends JPanel implements ActionListener {
  }
 
  public static void loadSound( int keySound){
+  
   if(keySound == 1)  
      try{
          AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src/resources/Sound/mixkit-arcade-retro-changing-tab-206.wav"));
