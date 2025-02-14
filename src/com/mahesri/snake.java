@@ -3,9 +3,9 @@ package mahesri;
 import javax.swing.*;
 import java.awt.*;
 
-public class Snake extends JFrame {
+public class snake extends JFrame {
 
-Snake(){
+snake(){
     initUI();
 }
 
@@ -22,6 +22,6 @@ void initUI(){
 
 public static void main(String[]args){
     EventQueue.invokeLater(() -> {
-        new Snake();
+        new snake();
     });
 }}

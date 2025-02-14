@@ -53,6 +53,7 @@ public class Board extends JPanel implements ActionListener {
       timer = new Timer(delay, this);
       timer.start();
       locateApple();
+      loadSound(3);
     }
 
     public void loadImage(){
@@ -93,6 +94,16 @@ public class Board extends JPanel implements ActionListener {
          }
          
      }
+
+     if(keySound == 3){
+      try{
+          AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src/resources/Sound/mixkit-fast-whoosh-transition-1490.wav"));
+          playAudio(ais);
+      }catch (Exception e){
+          e.printStackTrace();
+      }
+      
+  }
     }
 
    @Override
